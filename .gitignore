@@ -1,8 +1,6 @@
 # Ignore the .env file
 .env
 
-server.js correct mixed.txt
-
 # Node.js related ignores
 node_modules
 npm-debug.log
