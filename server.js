@@ -114,7 +114,12 @@ app.post("/api/buy", async (req, res) => {
     }
   } catch (error) {
     console.error("Error buying coin:", error);
-    res.status(500).json({ success: false, message: "Internal server error" });
+    res
+      .status(500)
+      .json({
+        success: false,
+        message: "Internal server error: Positions size might be too big",
+      });
   }
 });
 
@@ -136,7 +141,12 @@ app.post("/api/sell", async (req, res) => {
     }
   } catch (error) {
     console.error("Error selling coin:", error);
-    res.status(500).json({ success: false, message: "Internal server error" });
+    res
+      .status(500)
+      .json({
+        success: false,
+        message: "Internal server error: Positions size might be too big",
+      });
   }
 });
 
