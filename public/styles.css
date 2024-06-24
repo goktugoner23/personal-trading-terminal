@@ -20,11 +20,13 @@ nav#top-coin-prices {
   white-space: nowrap;
   padding: 10px 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;  /* Ensure the container spans the full width */
 }
 
 .coin-prices {
   display: inline-block;
-  animation: scroll 15s linear infinite;
+  animation: scroll 30s linear infinite;
+  width: 100%;
 }
 
 @keyframes scroll {
