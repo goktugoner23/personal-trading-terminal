@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@binance/connector": "^3.3.0",
+    "@binance/futures-connector": "^0.1.0",
+    "axios": "^1.7.2",
+    "body-parser": "^1.20.2",
+    "cheerio": "^1.0.0-rc.12",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "puppeteer": "^22.12.0"
+  }
+}

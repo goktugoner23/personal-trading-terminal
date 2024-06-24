@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trading Terminal</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Trading Terminal</h1>
+    </header>
+    <nav id="top-coin-prices">
+      <div class="coin-prices">
+        <span>BTC: $50,000</span>
+        <span>ETH: $4,000</span>
+        <span>XRP: $1.2</span>
+        <!-- Add more coin prices as needed -->
+      </div>
+    </nav>
+    <main>
+      <div class="container">
+        <div class="left-panel">
+          <section id="income-history">
+            <h2>Income History</h2>
+            <div id="income-history-container"></div>
+          </section>
+        </div>
+        <div class="right-panel">
+          <section id="news">
+            <h2>TreeNews</h2>
+            <div class="news-content" id="news-content"></div>
+          </section>
+          <section id="buy-sell">
+            <form id="tradeForm" onsubmit="return false;">
+              <input type="text" id="coin" placeholder="Enter coin pair" />
+              <input type="number" id="amount" placeholder="Enter amount" />
+              <div class="button-group">
+                <button type="button" class="buy-button" id="buyButton">
+                  Buy
+                </button>
+                <button type="button" class="sell-button" id="sellButton">
+                  Sell
+                </button>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+      <section id="positions">
+        <h2>Positions</h2>
+        <div class="positions-header">
+          <span>Symbol</span>
+          <span>Entry</span>
+          <span>Size</span>
+          <span>Mark Price</span>
+          <span>PNL (ROI%)</span>
+          <span>Liquidation</span>
+          <span>Action</span>
+        </div>
+        <div id="positions-content"></div>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2024 Trading Terminal</p>
+    </footer>
+    <script src="walletbalance.js"></script>
+    <script src="fetchNews.js"></script>
+    <script src="positions-frontend.js"></script>
+  </body>
+</html>

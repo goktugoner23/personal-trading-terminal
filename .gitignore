@@ -1,0 +1,11 @@
+# Ignore the .env file
+.env
+
+# Node.js related ignores
+node_modules
+npm-debug.log
+yarn-error.log
+
+# OS generated files
+.DS_Store
+Thumbs.db

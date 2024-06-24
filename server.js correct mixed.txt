@@ -1,0 +1,61 @@
+const express = require('express');
+const puppeteer = require('puppeteer');
+const path = require('path');
+
+const app = express();
+const PORT = 3000;
+
+let cachedNews = [];
+
+async function fetchLatestNews() {
+    try {
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
+        await page.goto('https://news.treeofalpha.com', { waitUntil: 'networkidle2' });
+
+        const news = await page.evaluate(() => {
+            const newsItems = [];
+            document.querySelectorAll('.box.padding-smallest.rowToColumn').forEach(element => {
+                const titleElement = element.querySelector('.contentTitle a');
+                const dateElement = element.querySelector('.originTime');
+                const link = titleElement ? titleElement.href : null;
+
+                if (titleElement && dateElement && link) {
+                    newsItems.push({
+                        title: titleElement.innerText.trim(),
+                        date: dateElement.innerText.trim(),
+                        link: link
+                    });
+                }
+            });
+            return newsItems;
+        });
+
+        await browser.close();
+        cachedNews = news;
+        console.log("Updated cached news: ", cachedNews);
+    } catch (error) {
+        console.error("Error during scraping: ", error);
+    }
+}
+
+// Initial fetch
+fetchLatestNews();
+
+// Periodically fetch news every 5 minutes
+setInterval(fetchLatestNews, 300000);
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/api/news', (req, res) => {
+    console.log("Serving cached news");
+    res.json(cachedNews);
+});
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
